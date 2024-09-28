@@ -6,7 +6,8 @@ project "GLM"
 	objdir ("../../../bin-int/" .. OutputDir .. "/%{prj.name}")
 
 	files {
-	"glm/common.hpp",
+        "glm/placeholder.cpp",
+		"glm/common.hpp",
         "glm/exponential.hpp",
         "glm/ext.hpp",
         "glm/fwd.hpp",

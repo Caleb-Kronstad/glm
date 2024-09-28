@@ -22,11 +22,6 @@ namespace glm
 		typedef vec<3, T, Q> type;
 		typedef vec<3, bool, Q> bool_type;
 
-		enum is_aligned
-		{
-			value = detail::is_aligned<Q>::value
-		};
-
 		// -- Data --
 
 #		if GLM_SILENT_WARNINGS == GLM_ENABLE
@@ -37,7 +32,6 @@ namespace glm
 #				pragma clang diagnostic push
 #				pragma clang diagnostic ignored "-Wgnu-anonymous-struct"
 #				pragma clang diagnostic ignored "-Wnested-anon-types"
-#				pragma clang diagnostic ignored "-Wpadded"
 #			elif GLM_COMPILER & GLM_COMPILER_VC
 #				pragma warning(push)
 #				pragma warning(disable: 4201)  // nonstandard extension used : nameless struct/union
@@ -49,9 +43,6 @@ namespace glm
 
 #		if GLM_CONFIG_XYZW_ONLY
 			T x, y, z;
-#			if GLM_CONFIG_SWIZZLE == GLM_SWIZZLE_FUNCTION
-			GLM_SWIZZLE_GEN_VEC_FROM_VEC3_COMP(T, Q, x, y, z)
-#			endif//GLM_CONFIG_SWIZZLE
 #		elif GLM_CONFIG_ANONYMOUS_STRUCT == GLM_ENABLE
 			union
 			{
@@ -104,8 +95,8 @@ namespace glm
 
 		// -- Implicit basic constructors --
 
-		GLM_DEFAULTED_DEFAULT_CTOR_DECL GLM_CONSTEXPR vec() GLM_DEFAULT_CTOR;
-		GLM_DEFAULTED_FUNC_DECL GLM_CONSTEXPR vec(vec const& v) GLM_DEFAULT;
+		GLM_FUNC_DECL GLM_CONSTEXPR vec() GLM_DEFAULT;
+		GLM_FUNC_DECL GLM_CONSTEXPR vec(vec const& v) GLM_DEFAULT;
 		template<qualifier P>
 		GLM_FUNC_DECL GLM_CONSTEXPR vec(vec<3, T, P> const& v);
 
@@ -182,7 +173,7 @@ namespace glm
 
 		// -- Unary arithmetic operators --
 
-		GLM_DEFAULTED_FUNC_DECL GLM_CONSTEXPR vec<3, T, Q>& operator=(vec<3, T, Q> const& v) GLM_DEFAULT;
+		GLM_FUNC_DECL GLM_CONSTEXPR vec<3, T, Q>& operator=(vec<3, T, Q> const& v) GLM_DEFAULT;
 
 		template<typename U>
 		GLM_FUNC_DECL GLM_CONSTEXPR vec<3, T, Q> & operator=(vec<3, U, Q> const& v);
@@ -257,8 +248,6 @@ namespace glm
 		template<typename U>
 		GLM_FUNC_DECL GLM_CONSTEXPR vec<3, T, Q> & operator>>=(vec<3, U, Q> const& v);
 	};
-
-
 
 	// -- Unary operators --
 
@@ -436,10 +425,6 @@ namespace glm
 
 	template<qualifier Q>
 	GLM_FUNC_DECL GLM_CONSTEXPR vec<3, bool, Q> operator||(vec<3, bool, Q> const& v1, vec<3, bool, Q> const& v2);
-
-
-
-
 }//namespace glm
 
 #ifndef GLM_EXTERNAL_TEMPLATE
