@@ -2,12 +2,12 @@ project "GLM"
     kind "StaticLib"
     language "C++"
 
-	targetdir ("../../../bin/" .. OutputDir .. "/%{prj.name}")
-	objdir ("../../../bin-int/" .. OutputDir .. "/%{prj.name}")
+    targetdir ("../../../bin/" .. OutputDir .. "/%{prj.name}")
+    objdir ("../../../bin-int/" .. OutputDir .. "/%{prj.name}")
 
-	files {
+    files {
         "glm/placeholder.cpp",
-		"glm/common.hpp",
+        "glm/common.hpp",
         "glm/exponential.hpp",
         "glm/ext.hpp",
         "glm/fwd.hpp",
@@ -34,12 +34,34 @@ project "GLM"
         "glm/gtc/**hpp",
         "glm/gtx/**cpp",
         "glm/gtx/**hpp",
-	}
+    }
 
     defines {
-        "_CRT_SECURE_NO_WARNINGS",
         "GLM_ENABLE_EXPERIMENTAL"
     }
-    
-	filter "system:windows"
-		systemversion "latest"
+
+    filter "system:windows"
+        systemversion "latest"
+        defines {
+            "_CRT_SECURE_NO_WARNINGS"
+        }
+
+    filter "system:linux"
+        pic "On"
+
+    filter "configurations:Debug"
+        defines { "DEBUG" }
+        runtime "Debug"
+        symbols "On"
+
+    filter "configurations:Release"
+        defines { "RELEASE" }
+        runtime "Release"
+        optimize "On"
+        symbols "On"
+
+    filter "configurations:Dist"
+        defines { "DIST" }
+        runtime "Release"
+        optimize "On"
+        symbols "Off"
