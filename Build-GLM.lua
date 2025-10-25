@@ -3,8 +3,8 @@ project "GLM"
     kind "StaticLib"
     language "C++"
 
-    targetdir ("../../../Build/Binaries/" .. OutputDir .. "/Project/Dependencies/%{prj.name}")
-    objdir ("../../../Build/Binaries-Intermediate/" .. OutputDir .. "/Project/Dependencies/%{prj.name}")
+    targetdir ("../../../Build/Binaries/" .. OutputDir .. "/Dependencies/%{prj.name}")
+    objdir ("../../../Build/Binaries-Intermediate/" .. OutputDir .. "/Dependencies/%{prj.name}")
 
     files {
         "glm/placeholder.cpp",
